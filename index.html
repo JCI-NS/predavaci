@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JCI Learning Hub - Liderski program | Novi Sad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #0097D7;
+      --navy:   #130F2D;
+      --white:  #FFFFFF;
+      --navy2:  #1F4789;
+      --teal:   #57BCBC;
+      --gold:   #EFC40F;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--navy);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(19, 15, 45, 0.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 1px 0 rgba(0, 151, 215, 0.3), 0 4px 24px rgba(0,0,0,0.18);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: auto;
+    }
+    nav.faded { opacity: 0; pointer-events: none; }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-cta {
+      background: transparent;
+      color: var(--blue);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 9px 24px;
+      border: 1.5px solid rgba(0, 151, 215, 0.5);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { border-color: var(--blue); background: rgba(0,151,215,0.08); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 120px 48px 80px;
+    }
+
+    /* Ripple graphic - top-right decorative element */
+    .hero-ripple {
+      position: absolute;
+      top: -220px;
+      right: -200px;
+      width: 820px;
+      height: 820px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--teal);
+      display: block;
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 5.5vw, 68px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-title span { color: var(--gold); }
+
+    .hero-subtitle {
+      font-size: clamp(22px, 3vw, 36px);
+      font-weight: 300;
+      color: var(--blue);
+      margin-bottom: 28px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      max-width: 540px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 32px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #007cb8; transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 32px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    /* ── PILLARS ── */
+    .section { padding: 96px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: #4a4a6a;
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 56px;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .pillar-card {
+      border-radius: 8px;
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .pillar-card:hover { transform: translateY(-4px); }
+
+    .pillar-card--navy { background: var(--navy); }
+    .pillar-card--blue { background: var(--navy2); }
+    .pillar-card--gold { background: var(--gold); }
+
+    .pillar-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 24px;
+    }
+
+    .pillar-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .pillar-card--navy .pillar-title,
+    .pillar-card--blue .pillar-title { color: var(--white); }
+    .pillar-card--gold .pillar-title { color: var(--navy); }
+
+    .pillar-desc {
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .pillar-card--navy .pillar-desc,
+    .pillar-card--blue .pillar-desc { color: rgba(255,255,255,0.72); }
+    .pillar-card--gold .pillar-desc { color: rgba(19,15,45,0.75); }
+
+    /* ── ABOUT ── */
+    .about { background: #f4f7fb; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 760px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .about-stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .stat-box {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 28px 24px;
+      border-left: 4px solid var(--blue);
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-number span { color: var(--blue); }
+    .stat-label {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      max-width: 440px;
+    }
+
+    .about-visual-bg {
+      width: 100%;
+      height: 100%;
+      background: var(--navy);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .jci-tagline {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      text-align: center;
+      padding: 32px;
+      position: relative;
+      z-index: 2;
+      line-height: 1.4;
+    }
+    .jci-tagline em {
+      display: block;
+      color: var(--gold);
+      font-style: normal;
+      font-size: 28px;
+      margin-top: 8px;
+    }
+
+    /* ── BOOKING ── */
+    .booking { background: var(--white); }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .booking-layout { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .booking-info {}
+
+    .booking-details {
+      margin: 32px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .booking-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .detail-icon {
+      width: 42px;
+      height: 42px;
+      background: #eef4fb;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .detail-icon svg { width: 20px; height: 20px; }
+
+    .detail-text {}
+    .detail-title { font-weight: 600; font-size: 14px; color: var(--navy); margin-bottom: 2px; }
+    .detail-value { font-size: 15px; color: #4a4a6a; }
+
+    .booking-cta-block {
+      margin-top: 36px;
+      padding: 32px;
+      background: var(--navy);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .booking-cta-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .booking-cta-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 24px;
+    }
+
+    /* Luma button override */
+    .luma-checkout--button {
+      background: var(--gold) !important;
+      color: var(--navy) !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      font-weight: 700 !important;
+      font-size: 15px !important;
+      padding: 14px 36px !important;
+      border: none !important;
+      border-radius: 4px !important;
+      cursor: pointer !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      transition: opacity 0.2s !important;
+    }
+    .luma-checkout--button:hover { opacity: 0.88 !important; }
+
+    .booking-embed {
+      position: sticky;
+      top: 100px;
+    }
+
+    .scroll-hint-arrow {
+      display: none;
+    }
+
+    .booking-embed iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 700px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    }
+
+    /* ── QUOTE ── */
+    .quote-band {
+      background: var(--blue);
+      padding: 80px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-band blockquote {
+      font-size: clamp(20px, 2.8vw, 30px);
+      font-weight: 300;
+      color: var(--white);
+      max-width: 760px;
+      margin: 0 auto 20px;
+      line-height: 1.5;
+      position: relative;
+      z-index: 2;
+    }
+
+    .quote-band cite {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 56px 48px 32px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      max-width: 280px;
+      margin-top: 12px;
+      line-height: 1.65;
+    }
+
+    .footer-links h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .footer-links ul { list-style: none; }
+    .footer-links li + li { margin-top: 10px; }
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 28px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* color badge in footer */
+    .badge-blue { color: var(--blue); }
+    .badge-gold { color: var(--gold); }
+
+    /* ── TRACK INFO BUTTON ── */
+    .track-label-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #57BCBC;
+      margin-bottom: 6px;
+    }
+    .track-info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: rgba(87,188,188,0.15);
+      color: #57BCBC;
+      font-size: 10px;
+      font-weight: 800;
+      border: 1.5px solid #57BCBC;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1;
+    }
+    .track-info-btn:hover {
+      background: #57BCBC;
+      color: var(--white);
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(19,15,45,0.55);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 32px 28px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.22);
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: #aaa;
+      padding: 4px;
+    }
+    .modal-close:hover { color: var(--navy); }
+    .modal-track-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #57BCBC;
+      margin-bottom: 6px;
+    }
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .modal-lead {
+      font-size: 14px;
+      color: #4a4a6a;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .modal-module {
+      border-left: 3px solid var(--blue);
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      background: #f4f7fb;
+      border-radius: 0 6px 6px 0;
+    }
+    .modal-module-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .modal-module-desc {
+      font-size: 13px;
+      color: #4a4a6a;
+      line-height: 1.55;
+    }
+
+    /* ── PRICE HIGHLIGHT ── */
+    .price-highlight {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .price-label {
+      font-size: 12px;
+      color: #6b7280;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; gap: 12px; }
+      .nav-logo { width: 160px !important; }
+      .nav-cta { padding: 8px 16px; font-size: 13px; }
+      .section { padding: 64px 20px; }
+      .hero { padding: 100px 20px 60px; }
+      .booking-cta-block { padding: 24px 20px; }
+      footer { padding: 48px 20px 24px; }
+
+      .scroll-hint-arrow {
+        display: flex;
+        justify-content: center;
+        color: #b0b8cc;
+        animation: bounce-down 1.8s ease-in-out infinite;
+      }
+      .scroll-hint-arrow svg { width: 28px; height: 28px; }
+    }
+
+    @keyframes bounce-down {
+      0%, 100% { transform: translateY(0); opacity: 0.55; }
+      50% { transform: translateY(6px); opacity: 0.9; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="site-nav">
+  <a href="#" class="nav-logo" style="overflow:hidden;width:240px;min-width:80px;height:56px;flex-shrink:1;">
+    <img
+      src="learning_hub_logo_transparent.png"
+      alt="JCI Learning Hub Novi Sad"
+      style="height:56px;width:auto;display:block;"
+    />
+  </a>
+  <a
+    href="https://luma.com/event/evt-waQQHC4ACC9hFL0"
+    class="nav-cta"
+    data-luma-action="checkout"
+    data-luma-event-id="evt-waQQHC4ACC9hFL0"
+  >Prijavi se</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Ripple decoration -->
+  <svg class="hero-ripple" viewBox="0 0 620 620" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" overflow="visible">
+    <circle cx="500" cy="120" r="540" stroke="#0097D7" stroke-width="42" stroke-opacity="0.08"/>
+    <circle cx="500" cy="120" r="440" stroke="#0097D7" stroke-width="42" stroke-opacity="0.10"/>
+    <circle cx="500" cy="120" r="340" stroke="#0097D7" stroke-width="38" stroke-opacity="0.12"/>
+    <circle cx="500" cy="120" r="240" stroke="#57BCBC" stroke-width="34" stroke-opacity="0.14"/>
+    <circle cx="500" cy="120" r="150" stroke="#0097D7" stroke-width="28" stroke-opacity="0.18"/>
+    <circle cx="500" cy="120" r="75"  stroke="#57BCBC" stroke-width="22" stroke-opacity="0.20"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">JCI Novi Sad predstavlja</div>
+    <h1 class="hero-title">JCI Learning Hub<br/><span>Liderski program</span></h1>
+    <p class="hero-subtitle">Razvij lidera u sebi.</p>
+    <p class="hero-desc">
+      Program za mlade od 23 do 40 godina koji žele da razviju svoje liderske veštine
+      na konkretan, primenljiv način. Petodnevni intenzivni program koji spaja
+      ambiciozne ljude, iskusne mentore i praktičan rad.
+      Dolaziš sa pitanjima, odlaziš sa alatima, perspektivom i mrežom koja ostaje.
+    </p>
+    <div class="hero-actions">
+      <a href="#rezervacija" class="btn-primary" style="background:var(--gold);color:var(--navy);">Rezerviši mesto</a>
+      <a href="#o-akademiji" class="btn-ghost">Saznaj više</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- PILLARS -->
+<section class="section" id="o-akademiji">
+  <div class="section-inner">
+    <p class="section-label">Oblasti</p>
+    <h2 class="section-title">Šta te čeka na Liderskom programu?</h2>
+    <p class="section-lead">
+      Liderski program JCI Learning Huba pokriva tri oblasti koje čine temelj svakog lidera:
+      znanje, preduzetnički duh i zajednički rast.
+    </p>
+    <div class="pillars-grid">
+
+      <!-- Liderstvo -->
+      <div class="pillar-card pillar-card--navy">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="36" height="26" rx="3" stroke="#EFC40F" stroke-width="2"/>
+          <line x1="6" y1="18" x2="42" y2="18" stroke="#EFC40F" stroke-width="2"/>
+          <line x1="14" y1="10" x2="14" y2="36" stroke="#EFC40F" stroke-width="2"/>
+          <circle cx="30" cy="27" r="5" stroke="#57BCBC" stroke-width="2"/>
+          <path d="M23 36c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="#57BCBC" stroke-width="2"/>
+        </svg>
+        <h3 class="pillar-title">Liderstvo</h3>
+        <p class="pillar-desc">
+          Praktične veštine vođenja, komunikacije i donošenja odluka. Uči od iskusnih
+          mentora koji su liderstvo izgradili kroz akciju, a ne samo teoriju.
+        </p>
+      </div>
+
+      <!-- Liderski program -->
+      <div class="pillar-card pillar-card--blue">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 8L6 18l18 10 18-10L24 8z" stroke="#EFC40F" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M6 18v14" stroke="#57BCBC" stroke-width="2"/>
+          <path d="M12 21.5v10.5c0 3.31 5.37 6 12 6s12-2.69 12-6V21.5" stroke="#EFC40F" stroke-width="2"/>
+        </svg>
+        <h3 class="pillar-title">Znanje</h3>
+        <p class="pillar-desc">
+          Fokusirani moduli koji kombinuju teorijsko znanje sa konkretnim primerima.
+          Sadržaj koji možeš primeniti već sledećeg dana, u poslu ili u životu.
+        </p>
+      </div>
+
+      <!-- Preduzetništvo -->
+      <div class="pillar-card pillar-card--gold">
+        <svg class="pillar-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="16" stroke="#130F2D" stroke-width="2"/>
+          <path d="M24 8v4M24 36v4M8 24h4M36 24h4" stroke="#130F2D" stroke-width="2" stroke-linecap="round"/>
+          <path d="M18 24c0-3.31 2.69-6 6-6s6 2.69 6 6-2.69 6-6 6" stroke="#130F2D" stroke-width="2"/>
+          <circle cx="24" cy="24" r="2" fill="#130F2D"/>
+        </svg>
+        <h3 class="pillar-title">Preduzetništvo</h3>
+        <p class="pillar-desc">
+          Razmišljanje lidera koji ne čeka prilike, već ih stvara. Radionice i studije
+          slučaja koje razvijaju preduzetnički mindset u svakom kontekstu.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="section about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <p class="section-label">O programu</p>
+        <h2 class="section-title">Zašto JCI Learning Hub?</h2>
+        <p class="section-lead" style="margin-bottom: 24px;">
+          Svetu su potrebni ljudi koji ne čekaju promene, već ih stvaraju.
+          JCI Learning Hub je prostor gde mladi profesionalci uče kroz
+          praksu, rastu kroz razmenu znanja i grade mreže koje traju.
+        </p>
+
+        <div class="about-stat-row" style="margin-bottom: 40px;">
+          <div class="stat-box">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Pravca</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Modula</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Dana</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Studija slučaja</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="about-visual">
+        <div class="about-visual-bg">
+          <!-- Ripple inside card -->
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:0.12" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+            <circle cx="200" cy="200" r="180" stroke="#0097D7" stroke-width="32"/>
+            <circle cx="200" cy="200" r="130" stroke="#0097D7" stroke-width="28"/>
+            <circle cx="200" cy="200" r="85"  stroke="#57BCBC" stroke-width="24"/>
+            <circle cx="200" cy="200" r="45"  stroke="#0097D7" stroke-width="18"/>
+          </svg>
+          <div class="jci-tagline">
+            Postani deo promene.
+            <em>Postani lider.</em>
+            <a
+              href="https://luma.com/event/evt-waQQHC4ACC9hFL0"
+              class="luma-checkout--button"
+              data-luma-action="checkout"
+              data-luma-event-id="evt-waQQHC4ACC9hFL0"
+              style="margin-top:28px;"
+            >Prijavi se</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- QUOTE -->
+<div class="quote-band">
+  <svg style="position:absolute;right:-60px;top:-60px;opacity:0.07;pointer-events:none" width="360" height="360" viewBox="0 0 360 360" fill="none" aria-hidden="true">
+    <circle cx="300" cy="60" r="280" stroke="white" stroke-width="40"/>
+    <circle cx="300" cy="60" r="200" stroke="white" stroke-width="36"/>
+    <circle cx="300" cy="60" r="130" stroke="white" stroke-width="30"/>
+  </svg>
+  <blockquote>
+    "Tvoje uključivanje donosi lični rast kroz iskustvo i praktičan rad:
+    učiš tako što radiš i primenjuješ."
+  </blockquote>
+  <cite>JCI Brand Story</cite>
+</div>
+
+
+<!-- BOOKING -->
+<section class="section booking" id="rezervacija">
+  <div class="section-inner">
+    <p class="section-label">Rezervacija</p>
+    <h2 class="section-title">Prijavi se na Liderski program</h2>
+    <p class="section-lead">
+      Mesta su ograničena. Rezerviši svoje mesto već danas i budi deo
+      zajednice koja stvara promene.
+    </p>
+
+    <div class="booking-layout">
+      <!-- Info column -->
+      <div class="booking-info">
+        <div class="booking-details">
+          <div class="booking-detail-item" style="align-items:flex-start;">
+            <div class="detail-icon" style="margin-top:2px;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0097D7" stroke-width="2" stroke-linecap="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <div class="detail-text">
+              <div class="detail-title" style="margin-bottom:10px;">Datumi i trajanje programa</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <div class="track-label-row" style="margin-top:4px;">
+                  <span onclick="openModal('self')" style="cursor:pointer;">Self Leadership</span>
+                  <button class="track-info-btn" onclick="openModal('self')" title="Šta je Self Leadership deo?">?</button>
+                </div>
+                <div style="font-size:14px;color:#4a4a6a;margin-bottom:4px;">
+                  subota, 6. jun &amp; nedelja, 7. jun
+                </div>
+                <div class="track-label-row" style="margin-top:6px;">
+                  <span onclick="openModal('business')" style="cursor:pointer;">Business Leadership</span>
+                  <button class="track-info-btn" onclick="openModal('business')" title="Šta je Business Leadership deo?">?</button>
+                </div>
+                <div style="font-size:14px;color:#4a4a6a;margin-bottom:4px;">
+                  subota, 13. jun &amp; nedelja, 14. jun
+                </div>
+                <div style="display:flex;gap:12px;font-size:14px;color:#4a4a6a;padding-top:8px;border-top:1px solid #e5eaf2;margin-top:4px;align-items:center;">
+                  <span style="display:flex;align-items:center;gap:6px;font-weight:600;color:var(--blue);min-width:72px;">
+                    <span onclick="openModal('zatvaranje')" style="cursor:pointer;">Zatvaranje</span>
+                    <button class="track-info-btn" onclick="openModal('zatvaranje')" title="Šta se dešava na zatvaranju?" style="border-color:var(--blue);color:var(--blue);background:rgba(0,151,215,0.12);">?</button>
+                  </span>
+                  <span>subota, 20. jun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="booking-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0097D7" stroke-width="2" stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="detail-text">
+              <div class="detail-title">Lokacija</div>
+              <div class="detail-value">Novi Sad</div>
+            </div>
+          </div>
+
+          <div class="booking-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0097D7" stroke-width="2" stroke-linecap="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="detail-text">
+              <div class="detail-title">Za koga je program?</div>
+              <div class="detail-value">Mladi profesionalci i preduzetnici (23–40)</div>
+            </div>
+          </div>
+
+          <div class="booking-detail-item">
+            <div class="detail-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#0097D7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="11" rx="1.5"/>
+                <circle cx="12" cy="12" r="2.5"/>
+                <path d="M6 7v11M18 7v11"/>
+              </svg>
+            </div>
+            <div class="detail-text">
+              <div class="price-label">Investicija</div>
+              <div class="price-highlight">12.000 RSD</div>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://canva.link/9yay0xr8xqbvr96" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex;align-items:center;gap:8px;font-size:14px;padding:11px 24px;color:var(--navy);border-color:rgba(19,15,45,0.25);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+          Otvori brošuru
+        </a>
+
+      </div>
+
+      <!-- Mobile scroll hint -->
+      <div class="scroll-hint-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+
+      <!-- Embed column -->
+      <div class="booking-embed" id="luma-embed">
+        <iframe
+          src="https://luma.com/embed/event/evt-waQQHC4ACC9hFL0/simple"
+          width="600"
+          height="700"
+          frameborder="0"
+          allow="fullscreen; payment"
+          aria-hidden="false"
+          tabindex="0"
+          title="JCI Learning Hub - Liderski program - detalji"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- O JCI ORGANIZACIJI -->
+<section style="background:#f4f7fb;padding:64px 48px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p style="font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#0097D7;margin-bottom:12px;">O JCI organizaciji</p>
+    <h3 style="font-size:clamp(22px,2.5vw,32px);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:16px;">Junior Chamber International</h3>
+    <p style="font-size:15px;color:#4a4a6a;line-height:1.75;max-width:760px;margin-bottom:40px;">
+      Globalna organizacija sa više od jednog veka tradicije. Programi JCI-ja spajaju
+      globalni domet, prilike za edukaciju i preduzetnički način razmišljanja,
+      stvarajući prostor za liderstvo i pravi osećaj pripadnosti.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;">
+      <div class="stat-box" style="border-left-color:#57BCBC;">
+        <div class="stat-number">100<span>+</span></div>
+        <div class="stat-label">Godina tradicije</div>
+      </div>
+      <div class="stat-box" style="border-left-color:#57BCBC;">
+        <div class="stat-number">200<span>+</span></div>
+        <div class="stat-label">Zemalja i teritorija</div>
+      </div>
+      <div class="stat-box" style="border-left-color:#57BCBC;">
+        <div class="stat-number">250K<span>+</span></div>
+        <div class="stat-label">Članova širom sveta</div>
+      </div>
+      <div class="stat-box" style="border-left-color:#57BCBC;">
+        <div class="stat-number">5K<span>+</span></div>
+        <div class="stat-label">Lokalnih organizacija</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img
+          src="Jci%20Novi%20Sad%20transparent%20logo%20clean.png"
+          alt="JCI Novi Sad"
+          style="height:120px;width:auto;display:block;filter:brightness(0) invert(1);"
+        />
+        <p>
+          Junior Chamber International Novi Sad, zajednica mladih lidera koji ne čekaju
+          promene, već ih stvaraju.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Program</h4>
+        <ul>
+          <li><a href="#rezervacija">Rezervacija</a></li>
+          <li><a href="https://luma.com/event/evt-waQQHC4ACC9hFL0">Luma stranica</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider" />
+
+    <div class="footer-bottom">
+      <p>© 2025 JCI Novi Sad. Sva prava zadržana.</p>
+      <p>
+        <span class="badge-blue">JCI</span>
+        <span style="color:rgba(255,255,255,0.2);margin:0 6px;">·</span>
+        <span class="badge-gold">JCI Learning Hub - Liderski program</span>
+        <span style="color:rgba(255,255,255,0.2);margin:0 6px;">·</span>
+        <span style="color:rgba(255,255,255,0.35)">Novi Sad</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+
+<!-- TRACK MODALS -->
+<div class="modal-overlay" id="modal-self" onclick="closeModalOnOverlay(event, 'self')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('self')">&times;</button>
+    <div class="modal-track-label">Self deo · 6–7. jun</div>
+    <div class="modal-title">Self Leadership</div>
+    <p class="modal-lead">
+      Liderstvo počinje upravljanjem sobom. Prva dva modula fokusirana su na osobu iza lidera: vrednosti, pokretači, komunikacija i uticaj na ljude oko sebe.
+    </p>
+    <div class="modal-module">
+      <div class="modal-module-name">Modul 1 · Self-Leadership</div>
+      <div class="modal-module-desc">Samosvest, vrednosti, upravljanje energijom i fokusom. NLP tehnike i Future Leader Visualization: polaznici grade sliku sebe kao lidera za 5 godina i planiraju put do tamo.</div>
+    </div>
+    <div class="modal-module">
+      <div class="modal-module-name">Modul 2 · Leadership with Purpose</div>
+      <div class="modal-module-desc">Situaciono liderstvo, timske uloge, etičko odlučivanje i 3-minutni leadership govor pred grupom. Fokus na vođenju ljudi i sebe u praksi.</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-business" onclick="closeModalOnOverlay(event, 'business')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('business')">&times;</button>
+    <div class="modal-track-label">Business deo · 13–14. jun</div>
+    <div class="modal-title">Business Leadership</div>
+    <p class="modal-lead">
+      Fokus na alatima koje koriste projektni menadžeri, konsultanti i preduzetnici: vođenje projekata, upravljanje partnerima i izgradnja tima koji funkcioniše samostalno.
+    </p>
+    <div class="modal-module">
+      <div class="modal-module-name">Modul 3 · Business Management</div>
+      <div class="modal-module-desc">Stakeholder mapa, project scope, OKR za projekte, Lean canvas i RACI matrica. Uz podršku iz oblasti sales developmenta i marketinga, od ideje do validiranog plana.</div>
+    </div>
+    <div class="modal-module">
+      <div class="modal-module-name">Modul 4 · Agile Leadership</div>
+      <div class="modal-module-desc">Agile/Scrum, Kanban i Agilist board game simulacija. Facilitacija sastanaka, delegiranje i izgradnja tima koji zna ko šta radi i zašto.</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-zatvaranje" onclick="closeModalOnOverlay(event, 'zatvaranje')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('zatvaranje')">&times;</button>
+    <div class="modal-track-label">Zatvaranje · subota, 20. jun</div>
+    <div class="modal-title">Ceremonija zatvaranja</div>
+    <div class="modal-module">
+      <div class="modal-module-name">Prezentovanje projekata</div>
+      <div class="modal-module-desc">Polaznici predstavljaju svoju inicijativu na kojoj su radili tokom programa pred grupom.</div>
+    </div>
+    <div class="modal-module">
+      <div class="modal-module-name">Dodela sertifikata</div>
+      <div class="modal-module-desc">Zvanični JCI Learning Hub sertifikat koji potvrđuje ne samo prisustvo, već konkretan rad i pokazane rezultate tokom programa.</div>
+    </div>
+    <div class="modal-module">
+      <div class="modal-module-name">Networking i posluženje</div>
+      <div class="modal-module-desc">Prostor za povezivanje polaznika, predavača i šire JCI zajednice, uz zajednički obrok i slavlje na kraju programa.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(track) {
+    document.getElementById('modal-' + track).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(track) {
+    document.getElementById('modal-' + track).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeModalOnOverlay(e, track) {
+    if (e.target === e.currentTarget) closeModal(track);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      ['self', 'business', 'zatvaranje'].forEach(closeModal);
+    }
+  });
+
+  // Fade nav out after scrolling past the hero
+  (function() {
+    var nav = document.getElementById('site-nav');
+    var threshold = window.innerHeight * 0.6;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > threshold) {
+        nav.classList.add('faded');
+      } else {
+        nav.classList.remove('faded');
+      }
+    }, { passive: true });
+  })();
+</script>
+</body>
+</html>
